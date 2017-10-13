@@ -1,0 +1,23 @@
+{
+  "accounts": [
+    {
+      "name": "Accounts Receivable",
+      "description": "Accounts Receivable",
+      "id": "01",
+      "type": "Asset",
+      "currency": "USD",
+      "placeholder": "true",
+      "subaccounts": [
+        {
+          "name": "Lakeville North High School",
+          "description": "A/R for Lakeville North High School Hockey",
+          "id": "01-01",
+          "type": "Asset",
+          "currency": "USD",
+          "placeholder": false,
+          "subaccounts": []
+        }
+      ]
+    }
+  ]
+}
