@@ -13,7 +13,18 @@ describe("Chart of Accounts Functionality", function() {
     expect(chart).to.be.ok;
     expect(chart.getNumAccounts()).to.eq(2);
     expect(chart.getAccountById('01').name).to.eq("Accounts Receivable");
-    // console.log(chart.getAccountById('01').type);
     expect(chart.getAccountById('01').type).to.eq(AccountType.Asset);
+    expect(chart.getAccountById('01').isPlaceholder()).to.be.true;
+  });
+
+  it ("should be able to retrieve a sub account from an existing chart of accounts", function () {
+    var chart = new AccountsChart(chartOfAccounts);
+
+    expect(chart).to.be.ok;
+
+    var account = chart.getAccountById('01-01');
+    expect(account.name).to.eq("Lakeville North High School");
+    expect(account.description).to.eq("A/R for Lakeville North High School Hockey");
+    expect(account.currency).to.eq("USD");
   });
 });

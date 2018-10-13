@@ -6,7 +6,7 @@
       "id": "01",
       "type": 1,
       "currency": "USD",
-      "placeholder": "true",
+      "placeholder": true,
       "subaccounts": [
         {
           "name": "Lakeville North High School",

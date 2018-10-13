@@ -30,4 +30,16 @@ export class Account {
   get type() {
     return this.mType;
   }
+
+  get description() {
+    return this.mDescription;
+  }
+
+  get currency() {
+    return this.mCurrency;
+  }
+
+  isPlaceholder() {
+    return this.mPlaceholder;
+  }
 }
