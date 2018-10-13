@@ -24,17 +24,35 @@ export class AccountsChart {
     return null;
   }
 
+  getAccountIds() {
+    return this.allAccountNumbers;
+  }
+
+  isAccountIdUsed(accountId) {
+    for (let idx in this.allAccountNumbers) {
+      if (this.allAccountNumbers[idx] == accountId) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   _parseAccounts(account) {
+    this.allAccountNumbers = [];
+
     let subActIds = [];
 
     // Parse all of the sub accounts first
     for (let subIdx in account.subaccounts) {
       this._parseAccounts(account.subaccounts[subIdx]);
       subActIds.push(account.subaccounts[subIdx].id);
+      this.allAccountNumbers.push(account.subaccounts[subIdx].id);
     }
 
     // Then construct an Account object having the appropriate member
     // variables.
+    this.allAccountNumbers.push(account.id);
     let act = new Account(account.id, account.name, account.description,
                           account.type, account.currency, account.placeholder,
                           subActIds);
