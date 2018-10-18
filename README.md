@@ -1,3 +1,4 @@
 cratchit
-=========
-An npm module for working with accounting data.
+===========
+
+A Rust-based library for handling offline accounting data.
