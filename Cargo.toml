@@ -1,0 +1,14 @@
+[package]
+name = "cratchit"
+version = "0.1.0"
+authors = ["Scott Johnson <jaywir3@gmail.com>"]
+description = "A package for managing accounting data"
+license = "MPL-2.0"
+readme = "README.md"
+keywords = ["accounting", "cratchit", "money", "finance"]
+
+[dependencies]
+json = "0.11.13"
+
+[dev-dependencies]
+galvanic-test = "0.1.4"
