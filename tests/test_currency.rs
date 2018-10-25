@@ -1,6 +1,6 @@
 extern crate cratchit;
 
-use cratchit::currency::Currency;
+use cratchit::Currency;
 
 #[test]
 fn currency_translation_from_string() {

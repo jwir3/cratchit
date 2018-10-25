@@ -1,8 +1,8 @@
 extern crate cratchit;
 extern crate json;
 
-use cratchit::accounts::{Account, AccountType, AccountsChart};
-use cratchit::currency::Currency;
+use cratchit::{Account, AccountType, AccountsChart};
+use cratchit::Currency;
 
 fn get_chart_of_accounts() -> json::JsonValue {
     let parsed = json::parse(
