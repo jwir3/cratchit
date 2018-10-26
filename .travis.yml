@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
     - libssl-dev
+cache: cargo
 rust:
 - stable
 - beta
@@ -18,11 +19,17 @@ before_cache: |
   if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
     RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
   fi
+before_script: |
+  if hash wasm-pack 2>/dev/null; then
+      echo "Wasm-pack already is installed"
+  else
+      curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+  fi
+
 script:
 - cargo clean
 - cargo build
 - cargo test
-- curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 - wasm-pack build
 before_deploy:
 - cd pkg
