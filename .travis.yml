@@ -23,6 +23,8 @@ script:
 - cargo clean
 - cargo build
 - cargo test
+- curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+- wasm-pack build
 before_deploy:
 - cd pkg
 deploy:
