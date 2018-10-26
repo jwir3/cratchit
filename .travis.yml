@@ -2,14 +2,14 @@ language: rust
 sudo: required
 dist: trusty
 addons:
-    apt:
-        packages:
-            - libssl-dev
+  apt:
+    packages:
+    - libssl-dev
 cache: cargo
 rust:
-  - stable
-  - beta
-  - nightly
+- stable
+- beta
+- nightly
 matrix:
   allow_failures:
     - rust: stable
@@ -19,12 +19,19 @@ before_cache: |
   if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
     RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
   fi
-
 script:
 - cargo clean
 - cargo build
 - cargo test
-
+before_deploy:
+- cd pkg
+deploy:
+  provider: npm
+  email: jaywir3@gmail.com
+  on:
+    tags: true
+  api_key:
+    secure: TOelLX+Vccjwkc/HRB5LrXJEjNzSYpJgUJ+kmpuAD+rji7zlFNpYpcNqYGvqrEMbLxHvlzA8NiRh1JM4qizeXpkOv8pi6GCbYkZnhNcsHyxwEqZTZ11LfpqZjlMa4x/7/xcijaAGBIwYHEATL8APyOiK4JHW75DH9ttrn47zn66UhySN2Upafr+SRzegk5LgamuahdjGHviWnnk6XL6QArFKiyeZbP7fuj03siGATfB8surnUrYNO1t6EcppR820d8v0Vv9uMCwOUb7PEgiX2lXhIQuRwgyxF90fNoo2AfB+jHY+y0wiVAm01l0NEaXtR42/bgSF4E3GlYkGCNuiW8CJjlhLEVP/WFjQ6WHGyiOVKHzTesdDWMzhauKzXys7G2YxwU4P9JKfRSoAX6DYLd6OfFuh7FHpo92cxYYx3LvfIYzujMvdAX8lRrJ7vbmbcxsonBav9R09jGiYZIhlS9owpPzimxT0/PH1PzxPgeq5q8I6VBf8FsF5TQ+32KLY7/ajV+ePlQzQly0097boxCgewn+BDqKqGsbPazp+BQGTa75AYT34pss8/seO/8zPbZfU7TTHa/fi5kYm4tXek1U6LKcOIMWWO9l6R/CLFw/U9vFWEnMB5SHM5FNGVpZ4UDibHh9wfNMMllZheer1mpHxKmHFqy1sE89E1cIxW9A=
 after_success: |
   if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
     # Uncomment the following line for coveralls.io
