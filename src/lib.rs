@@ -1,3 +1,9 @@
+//! A library for manipulating accounting data.
+//!
+//! This crate can be compiled to both Rust native code (for use within a native
+//! application directly), or to WebAssembly, for use within either a webapp or
+//! an electron application.
+
 #![feature(custom_attribute)]
 
 extern crate cfg_if;
@@ -30,14 +36,30 @@ cfg_if! {
     }
 }
 
+/// An enumeration for controlling the type of currency.
+///
+/// Currently, only US Dollars are supported.
 #[cfg_attr(target_arch = "wasm32", wasm_bindgen)]
 #[repr(u8)]
 #[derive(Clone, Copy, PartialEq, Debug)]
 pub enum Currency {
+    /// United States Dollars
     USDollar,
+
+    /// Default currency type. This is used when deserialization didn't resolve to a known value.
     Unknown,
 }
 
+/// Convert from a string slice to a `Currency` type.
+///
+/// # Examples
+/// ```
+/// use cratchit::Currency;
+///
+/// let currency_string = "USD";
+/// let currency = Currency::from(currency_string);
+/// assert_eq!(currency, Currency::USDollar);
+/// ```
 impl<'a> From<&'a str> for Currency {
     fn from(abbrev: &'a str) -> Currency {
         match abbrev {
@@ -189,6 +211,7 @@ impl Account {
     }
 }
 
+//#[cfg_attr(target_arch = "wasm32", wasm_bindgen)]
 pub struct AccountsChart {
     top_level_accounts: Vec<Account>,
 }
@@ -209,6 +232,8 @@ impl<'a> From<&'a json::JsonValue> for AccountsChart {
         AccountsChart { top_level_accounts }
     }
 }
+
+// #[cfg_attr(target_arch = "wasm32", wasm_bindgen)]
 impl AccountsChart {
     pub fn new() -> AccountsChart {
         let top_level_accounts = vec![];
