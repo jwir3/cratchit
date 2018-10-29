@@ -10,6 +10,7 @@ repository = "https://www.github.com/jwir3/cratchit"
 
 [badges]
 travis-ci = { repository = "jwir3/cratchit" }
+maintenance = { status = "actively-developed" }
 
 # [features]
 # default = ["console_error_panic_hook"]
