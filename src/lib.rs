@@ -3,26 +3,30 @@
 //! This crate can be compiled to both Rust native code (for use within a native
 //! application directly), or to WebAssembly, for use within either a webapp or
 //! an electron application.
-
 #![feature(custom_attribute)]
 
 extern crate cfg_if;
-extern crate json;
-extern crate wasm_bindgen;
-
-use wasm_bindgen::prelude::*;
 use cfg_if::cfg_if;
+
 use std::collections::HashMap;
+
+extern crate json;
+
+cfg_if! {
+    if #[cfg(target_arch = "wasm32")] {
+        extern crate wasm_bindgen;
+
+        use wasm_bindgen::prelude::*;
+    }
+}
 
 cfg_if! {
     // When the `console_error_panic_hook` feature is enabled, we can call the
     // `set_panic_hook` function to get better error messages if we ever panic.
-    if #[cfg(feature = "console_error_panic_hook")] {
+    if #[cfg(target_arch = "wasm32")] {
         extern crate console_error_panic_hook;
         use console_error_panic_hook::set_once as set_panic_hook;
-    } else {
-        #[inline]
-        fn set_panic_hook() {}
+
     }
 }
 
