@@ -34,13 +34,6 @@ script:
 before_deploy:
 - cd pkg
 deploy:
-  # Deploy rust crate to crates.io
-  - provider: script
-    script: cargo publish --token $TRAVIS_CRATES_TOKEN
-    skip_cleanup: true
-    on:
-      tags: true
-
   # Deploy wasm package to npm
   - provider: npm
     email: jaywir3@gmail.com
@@ -49,6 +42,12 @@ deploy:
     skip_cleanup: true
     api_key:
       secure: TOelLX+Vccjwkc/HRB5LrXJEjNzSYpJgUJ+kmpuAD+rji7zlFNpYpcNqYGvqrEMbLxHvlzA8NiRh1JM4qizeXpkOv8pi6GCbYkZnhNcsHyxwEqZTZ11LfpqZjlMa4x/7/xcijaAGBIwYHEATL8APyOiK4JHW75DH9ttrn47zn66UhySN2Upafr+SRzegk5LgamuahdjGHviWnnk6XL6QArFKiyeZbP7fuj03siGATfB8surnUrYNO1t6EcppR820d8v0Vv9uMCwOUb7PEgiX2lXhIQuRwgyxF90fNoo2AfB+jHY+y0wiVAm01l0NEaXtR42/bgSF4E3GlYkGCNuiW8CJjlhLEVP/WFjQ6WHGyiOVKHzTesdDWMzhauKzXys7G2YxwU4P9JKfRSoAX6DYLd6OfFuh7FHpo92cxYYx3LvfIYzujMvdAX8lRrJ7vbmbcxsonBav9R09jGiYZIhlS9owpPzimxT0/PH1PzxPgeq5q8I6VBf8FsF5TQ+32KLY7/ajV+ePlQzQly0097boxCgewn+BDqKqGsbPazp+BQGTa75AYT34pss8/seO/8zPbZfU7TTHa/fi5kYm4tXek1U6LKcOIMWWO9l6R/CLFw/U9vFWEnMB5SHM5FNGVpZ4UDibHh9wfNMMllZheer1mpHxKmHFqy1sE89E1cIxW9A=
+  # Deploy rust crate to crates.io
+  - provider: script
+    script: cargo publish --token $TRAVIS_CRATES_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
 after_success: |
   if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
     # Uncomment the following line for coveralls.io
