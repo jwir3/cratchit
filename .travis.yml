@@ -30,7 +30,8 @@ script:
 - cargo clean
 - cargo build
 - cargo test
-- wasm-pack build
+- wasm-pack build --target nodejs
+- cd integration && npm install && npm test
 before_deploy:
 - cd pkg
 deploy:
