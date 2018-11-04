@@ -6,6 +6,8 @@ addons:
     packages:
     - libssl-dev
 cache: cargo
+node_js:
+  - "8.9.3"
 rust:
 - stable
 - beta
@@ -20,6 +22,7 @@ before_cache: |
     RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
   fi
 before_script: |
+  node --version
   if hash wasm-pack 2>/dev/null; then
       echo "Wasm-pack already is installed"
   else
