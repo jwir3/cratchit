@@ -1,0 +1,12 @@
+{
+  "name": "cratchit-integration-tests",
+  "version": "0.0.1",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.5.3"
+  }
+}
