@@ -1,6 +1,6 @@
 [package]
 name = "cratchit"
-version = "0.0.5"
+version = "0.0.6"
 authors = ["Scott Johnson <jaywir3@gmail.com>"]
 description = "A package for managing accounting data"
 license = "MPL-2.0"
