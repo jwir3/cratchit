@@ -35,7 +35,7 @@ script:
 - cargo test
 - wasm-pack build --target nodejs
 # Someday, it'd be nice to get this to build on travis. Right now, it's manual.
-#- cd integration && npm install && npm test
+- cd integration && npm install && npm test
 before_deploy:
 - cd pkg
 deploy:
