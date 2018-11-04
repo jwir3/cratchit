@@ -1,5 +1,4 @@
 language: rust
-language: node_js
 sudo: required
 dist: trusty
 addons:
@@ -7,8 +6,6 @@ addons:
     packages:
     - libssl-dev
 cache: cargo
-node_js:
-  - "8.9.3"
 rust:
 - stable
 - beta
@@ -23,12 +20,14 @@ before_cache: |
     RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
   fi
 before_script: |
-  node --version
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+  nvm install 8.9.3
   if hash wasm-pack 2>/dev/null; then
       echo "Wasm-pack already is installed"
   else
       curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
   fi
+
 
 script:
 - cargo clean
